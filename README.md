@@ -4,6 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+In the backend directory, you can run:
+
+### `node index.js`
+
+Runs the backend server on [http://localhost:3001]
+
 In the project directory, you can run:
 
 ### `npm start`
