@@ -42,7 +42,7 @@ app.post('/description', (req, res) => {
   fetch(`https://genius.com/api${userDesc}`)
     .then((response) => response.json())
     .then((data) => {
-      let descObj = { data: data.response.song.description_preview }
+      let descObj = { data: data.response.song.description_preview, apple: data.response.song.spotify_uuid }
       res.send(descObj)
     })
 }

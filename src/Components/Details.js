@@ -74,11 +74,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.3vw",
     fontWeight: "bold"
   },
+  applePlayer: {
+    height: "80px",
+  }
 }))
 
 function Details() {
   const classes = useStyles();
-  const { setDescription, setLyrics, setSelected, showSong, description, lyrics } = useContext(ResultsContext)
+  const { setDescription, setLyrics, setSelected, showSong, description, lyrics, applePlay, setApplePlay } = useContext(ResultsContext)
   return (
     <div>
       <Button
@@ -88,6 +91,7 @@ function Details() {
           setDescription('')
           setLyrics('')
           setSelected(false)
+          setApplePlay('')
         }}
       >Go back to Search Results</Button>
       <div className={classes.songResult}>
@@ -101,14 +105,14 @@ function Details() {
               className={classes.cardImg}
             />
             </div>
+            {(applePlay !== "" && applePlay !== null) && <div className={classes.cardContentContainer}>
+              <iframe title="musicplayer" src={`https://open.spotify.com/embed/track/${applePlay}`} className={classes.applePlayer} allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>}
             <div className={classes.cardContentContainer}>
               <Typography component="span" className={classes.cardTitle}>
                 {showSong.result.full_title}
               </Typography>
             </div>
-
-
-
           </CardContent>
         </Card>
 

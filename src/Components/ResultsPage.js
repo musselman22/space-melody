@@ -59,6 +59,7 @@ function ResultsPage() {
   const [selected, setSelected] = useState(false);
   const [lyrics, setLyrics] = useState('');
   const [description, setDescription] = useState('');
+  const [applePlay, setApplePlay] = useState('');
 
 
   useEffect(() => {
@@ -91,7 +92,6 @@ function ResultsPage() {
   }
 
   async function getDescription(result) {
-    console.log("api path: ", result.result.api_path)
     let response = await fetch('http://localhost:3001/description', {
       method: 'POST',
       headers: {
@@ -102,10 +102,11 @@ function ResultsPage() {
     })
     let data = await response.json()
     setDescription(data.data)
+    setApplePlay(data.apple)
   }
 
   return (
-    <ResultsContext.Provider value={{ setDescription, setLyrics, setSelected, showSong, description, lyrics }}>
+    <ResultsContext.Provider value={{ setDescription, setLyrics, setSelected, showSong, description, lyrics, applePlay, setApplePlay }}>
       {selected === false &&
         <div className={classes.headerContainer}>
           <Typography className={classes.header}>
