@@ -4,8 +4,6 @@ import ResultsPage from './Components/ResultsPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NoResults from './Components/NoResults';
 
-
-
 function App() {
   return (
     <Router>

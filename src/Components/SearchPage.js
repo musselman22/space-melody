@@ -75,10 +75,7 @@ function SearchPage() {
     <div className="col header">
       <img src={fan} alt="moon" className={classes.logo} />
       <Typography className={classes.header}>Space Melody</Typography>
-
-      {/* <TextField id="outlined-basic" label="Search for a Tune" variant="outlined" className={classes.textField}
-        onChange={(event) => { setSearchCriteria(event.target.value) }} /> */}
-      <input type="text" placeholder="Search for a Tune" className={classes.input}
+      <input type="text" placeholder="Explore a tune 🚀" className={classes.input}
         onChange={(event) => { setSearchCriteria(event.target.value) }} />
 
       <Link to={`/results/${searchCriteria}`} className={classes.link}>

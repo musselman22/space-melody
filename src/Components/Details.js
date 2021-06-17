@@ -42,13 +42,15 @@ const useStyles = makeStyles((theme) => ({
   card: {
     width: "50vw",
     background: "#DCEEF2",
-    color: "#68788C"
+    color: "#68788C",
+    borderRadius: "2%"
   },
   accordion: {
     width: "50vw",
     fontSize: "1vw",
     background: "#DCEEF2",
-    color: "#68788C"
+    color: "#68788C",
+    borderRadius: "3%"
   },
   accTitle: {
     fontSize: "2vw",
@@ -59,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
   cardImg: {
     width: "41%",
     marginBottom: "1%",
+    border: "3px solid white",
+    borderRadius: "10px",
   },
   cardContentContainer: {
     display: "flex",

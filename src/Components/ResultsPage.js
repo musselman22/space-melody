@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../Styles/ResultsPage.css';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
-import '../Styles/ResultsPage.css';
 import ResultsContext from '../Contexts/ResultsContext';
 import Details from './Details';
 
@@ -31,16 +29,26 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   listContainer: {
+    borderRadius: "1%",
     marginTop: '.5%',
     marginLeft: '18%',
     marginRight: '18%',
     background: '#DCEEF2',
+    '&:hover': {
+      background: '#CCDDE0',
+      cursor: 'pointer',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#B2CCCF',
+    },
   },
   img: {
     width: '10%',
-    height: 'auto'
+    height: 'auto',
+    border: "1px solid white",
+    borderRadius: "10%",
   },
-
 }))
 
 function ResultsPage() {
