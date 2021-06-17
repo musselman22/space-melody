@@ -1,72 +1,45 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import '../Styles/ResultsPage.css';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import '../Styles/ResultsPage.css'
+import '../Styles/ResultsPage.css';
+import ResultsContext from '../Contexts/ResultsContext';
+import Details from './Details';
 
 const useStyles = makeStyles((theme) => ({
-  searchButton: {
-    color: "white",
-    marginTop: "2vw",
-    width: "20vw",
-    backgroundColor: '#F2865E',
-    '&:hover': {
-      backgroundColor: '#F2622E',
-      boxShadow: 'none',
-    },
-    '&:active': {
-      boxShadow: 'none',
-      backgroundColor: '#F2622E',
-    },
-  },
-  listItem: {
-    width: '100%',
-    backgroundColor: "#68788C",
-    display: "flex",
-    borderBottom: "2px solid black",
-  },
   listText: {
+    fontFamily: "'Montserrat', sans-serif",
+    fontSize: "1.25vw",
+    color: "#68788C",
+    marginLeft: "2%",
+  },
+  header: {
+    align: "center",
     letterSpacing: 7,
     fontFamily: "'Staatliches', cursive",
     fontSize: "3vw",
     color: "#DCEEF2",
-    marginLeft: "2%",
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: '1%',
-    backgroundColor: 'white',
-    background: 'white',
-    color: 'white',
-  },
 
-  outterContainer: {
-    margin: '.5%',
-    padding: '.5%',
   },
-
+  headerContainer: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  listContainer: {
+    marginTop: '.5%',
+    marginLeft: '18%',
+    marginRight: '18%',
+    background: '#DCEEF2',
+  },
   img: {
     width: '10%',
-    height: 'auto',
+    height: 'auto'
   },
-
-  songResult: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    flexDirection: "column",
-    flexBasis: "100",
-    flex: "1",
-  }
 
 }))
 
@@ -124,63 +97,40 @@ function ResultsPage() {
   }
 
   return (
-    <div className={classes.outterContainer}>
-      {results !== [] && selected === false ? results.map(result =>
-
-        <div key={result.result.id} className={`${classes.container} image-div`} onClick={() => {
-          setShowSong(result)
-          setSelected(true)
-          getLyrics(result)
-          getDescription(result)
-        }}>
-          <List className={classes.list}>
-            <ListItem alignItems="flex-start">
-              <img className="image-thumbnail" src={result.result.song_art_image_thumbnail_url} alt="thumbnail" />
+    <ResultsContext.Provider value={{ setDescription, setLyrics, setSelected, showSong, description, lyrics }}>
+      {selected === false &&
+        <div className={classes.headerContainer}>
+          <Typography className={classes.header}>
+            Search Results
+          </Typography>
+        </div>}
 
 
+      <List className={classes.list}>
+        {results !== [] && selected === false && results.map(result =>
+
+          <div key={result.result.id} className={classes.listContainer} onClick={() => {
+            setShowSong(result)
+            setSelected(true)
+            getLyrics(result)
+            getDescription(result)
+          }}>
+
+            <ListItem>
+              <img src={result.result.song_art_image_thumbnail_url} alt="thumbnail" className={classes.img} />
               <Typography
                 component="span"
                 className={classes.listText}
-                color="textPrimary"
               >
                 {result.result.full_title}
               </Typography>
-
             </ListItem>
-            <Divider variant="inset" component="li" />
-          </List>
-        </div>)
-        :
-        <div className={classes.songResult}>
-          <Button
-            className={classes.searchButton}
-            onClick={() => {
-              setDescription('')
-              setLyrics('')
-              setSelected(false)
-            }}
-          >Go back to Search Results</Button>
-          <div>
-            <img src={showSong.result.song_art_image_thumbnail_url} alt="thumbnail" />
+          </div>)
+        }
+      </List>
 
-          </div>
-          <div>
-            <span>
-              {showSong.result.full_title}
-            </span>
-          </div>
-          <div>
-            <p>
-              {description}
-            </p>
-          </div>
-          <div>
-            <pre>
-              {lyrics !== {} && lyrics}
-            </pre>
-          </div>
-        </div >}
-    </div>
+      {selected === true && <Details />}
+    </ResultsContext.Provider>
   )
 }
 

@@ -1,4 +1,3 @@
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Staatliches', cursive",
     fontSize: "9vw",
     color: "#DCEEF2",
-    // color: "repeating-linear-gradient(angle, red, blue)",
   },
   textField: {
     width: "45vw",
@@ -29,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1vw",
   },
   searchButton: {
-    marginTop: "2vw",
+    fontSize: "1.1vw",
+    borderRadius: "10px",
+    marginTop: "1vw",
     width: "20vw",
+    height: "3vw",
     backgroundColor: '#F2865E',
     '&:hover': {
       backgroundColor: '#F2622E',
@@ -44,7 +45,25 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     width: "15%",
     paddingTop: "50px",
-  }
+  },
+  input: {
+    '&[type=text]:focus': {
+      border: "2px solid #F2CF63",
+    },
+    width: "45vw",
+    height: "4vw",
+    padding: "12px 20px",
+    boxSizing: "border-box",
+    border: "2px solid #DCEEF2",
+    borderRadius: "10px",
+    transition: "0.5s",
+    outline: "none",
+    WebkitTransition: "0.5s",
+    marginBottom: ".5%",
+    fontSize: "1.25vw",
+  },
+
+
 }))
 
 
@@ -57,7 +76,9 @@ function SearchPage() {
       <img src={fan} alt="moon" className={classes.logo} />
       <Typography className={classes.header}>Space Melody</Typography>
 
-      <TextField id="outlined-basic" label="Search for a Tune" variant="outlined" className={classes.textField}
+      {/* <TextField id="outlined-basic" label="Search for a Tune" variant="outlined" className={classes.textField}
+        onChange={(event) => { setSearchCriteria(event.target.value) }} /> */}
+      <input type="text" placeholder="Search for a Tune" className={classes.input}
         onChange={(event) => { setSearchCriteria(event.target.value) }} />
 
       <Link to={`/results/${searchCriteria}`} className={classes.link}>
@@ -66,7 +87,7 @@ function SearchPage() {
           variant="contained"
           color="primary"
           size="large"
-          startIcon={<SearchIcon />}
+          startIcon={<SearchIcon style={{ fontSize: "2vw" }} />}
         >
           Search
         </Button>
