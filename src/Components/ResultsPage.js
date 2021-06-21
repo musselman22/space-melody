@@ -63,6 +63,7 @@ function ResultsPage() {
 
 
   useEffect(() => {
+    let isSubscribed = true;
     let getData = async () => {
       let response = await fetch('http://localhost:3001/', {
         method: 'POST',
@@ -73,9 +74,12 @@ function ResultsPage() {
         body: JSON.stringify({ queryParams: id })
       })
       let data = await response.json()
-      setResults(data.response.hits)
+      if (isSubscribed) {
+        setResults(data.response.hits)
+      }
     }
     getData()
+    return () => (isSubscribed = false)
   }, [id])
 
   async function getLyrics(result) {

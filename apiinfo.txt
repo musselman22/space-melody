@@ -1,3 +1,0 @@
-Client ID: MCCC7jRYHG6bjiZcm-xq_P4Mednf9vElKygekK5Xsfsl7I8CzzmXpWKHcYa0Dt0O
-Client secret: yJNO0pTe_upIuL2uwzOKd3SWeLFNxrkqTCA45rIsEMW-g2vtItp5ne9DTeDw4Qw6IRD_K-5rR8dRaqnA9Ktqdg
-clent access token: PyULTdWwY4cK6hb7WcNryYFlcU5a0KKiRIHlSd3yELvBIanoVI_Ue-konp_sossQ
